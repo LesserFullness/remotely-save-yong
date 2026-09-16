@@ -1,0 +1,37 @@
+# Intellij
+*.iml
+.idea
+
+# npm
+node_modules
+package-lock.json
+pnpm-lock.yaml
+
+# obsidian（插件运行数据，含各后端密钥，绝不入库）
+data.json
+
+# debug
+logs.txt
+*.js.map
+
+# 隐藏文件默认忽略，但下面这几个要入库
+# （上游只写了 `.*`，会把 .gitignore / .github / .editorconfig 一起挡掉）
+.*
+!/.gitignore
+!/.editorconfig
+!/.gitattributes
+!/.env.example.txt
+!/.github/
+
+# ⚠️ pro/ 是 PolyForm Strict 1.0.0 许可（禁止分发）→ 公开仓库必须排除
+#    注意：src/ 里有 5 处 `import ... from "../pro/src/..."`，排除后本仓库无法直接构建
+#    （仓库里提交的 main.js / 274.main.js 就是构建产物，Obsidian 可直接加载）
+pro/
+
+# ⚠️ 本仓库刻意**不**忽略构建产物 main.js / 274.main.js
+#    （上游 .gitignore 忽略 main.js；fork 自用，提交它可以让手机直接取这份文件）
+#    *.js.map 仍然忽略（见上）
+
+# .github/workflows 本仓库不用（构建依赖 pro/ 与上游 secrets，在这里必然失败）
+# 如果要恢复 CI，删掉下面这行即可
+.github/workflows/
