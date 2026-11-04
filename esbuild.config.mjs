@@ -57,7 +57,8 @@ esbuild
     inject: ["./esbuild.injecthelper.mjs"],
     format: "cjs",
     // watch: !prod, // no longer valid in esbuild 0.17
-    target: "es2016",
+    // 提到 es2020：新版 @aws-sdk/checksums 使用 BigInt 字面量，es2016 不支持（构建会报 Big integer literals 错误）
+    target: "es2020",
     logLevel: "info",
     sourcemap: prod ? false : "inline",
     treeShaking: true,
